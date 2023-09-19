@@ -119,10 +119,6 @@ void RemoveTodo()
 }
 
 
-
-
-
-
 // refactor to check if Description is Valid (  check if empty + check if the user enter same message)
 bool IsDescriptionValid(string description)
 {
