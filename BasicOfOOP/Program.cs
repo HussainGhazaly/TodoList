@@ -119,4 +119,3 @@ class ShapeMeasurmentsCalculator
 
 
 
-}
