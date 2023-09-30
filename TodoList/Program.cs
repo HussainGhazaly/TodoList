@@ -13,7 +13,7 @@ using System.Threading.Channels;
  */
 
 
-// we will use this (contains  & ADD methods & count ) from list methods 
+// we will use this (contains  & ADD methods & count  & removeAt) from list methods 
 var todos = new List<string>();
 
 Console.WriteLine("Hello!");

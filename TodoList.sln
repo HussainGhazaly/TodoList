@@ -5,7 +5,13 @@ VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList", "TodoList\TodoList.csproj", "{D92C2E61-9BE6-46FB-A172-286F7D0EF775}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{88B4B971-4BF1-4FA5-A601-D1C08ECCE867}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calculator", "Calculator\Calculator.csproj", "{88B4B971-4BF1-4FA5-A601-D1C08ECCE867}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Date_Time_OOP", "Date_Time_OOP\Date_Time_OOP.csproj", "{0AA81ED9-DF6A-492E-81DA-9EE550BC9285}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicOfOOP", "BasicOfOOP\BasicOfOOP.csproj", "{2787E5FF-D078-456B-98A3-3C05788CF8F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalAppointment", "MedicalAppointment\MedicalAppointment.csproj", "{BA7AE366-0194-4920-B2BC-568D504D17D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{88B4B971-4BF1-4FA5-A601-D1C08ECCE867}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88B4B971-4BF1-4FA5-A601-D1C08ECCE867}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88B4B971-4BF1-4FA5-A601-D1C08ECCE867}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AA81ED9-DF6A-492E-81DA-9EE550BC9285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA81ED9-DF6A-492E-81DA-9EE550BC9285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AA81ED9-DF6A-492E-81DA-9EE550BC9285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA81ED9-DF6A-492E-81DA-9EE550BC9285}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2787E5FF-D078-456B-98A3-3C05788CF8F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2787E5FF-D078-456B-98A3-3C05788CF8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2787E5FF-D078-456B-98A3-3C05788CF8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2787E5FF-D078-456B-98A3-3C05788CF8F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA7AE366-0194-4920-B2BC-568D504D17D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA7AE366-0194-4920-B2BC-568D504D17D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA7AE366-0194-4920-B2BC-568D504D17D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA7AE366-0194-4920-B2BC-568D504D17D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
