@@ -1,8 +1,5 @@
 ﻿
 
-
-
-
 /*****
  * 
  * 
@@ -26,11 +23,6 @@ medicalAppointment.MoveByMonthsAndDays(1, 2);
 var nameOnly = new MedicalAppointment("Name Only");
 
 Console.ReadKey();
-
-
-
-
-
 
 
 
