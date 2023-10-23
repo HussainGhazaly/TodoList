@@ -1,137 +1,78 @@
-﻿
-/*
- * 
- *  Lec = 66. Our first class 
- * 
- */
+﻿global using System.Diagnostics;
 
+var internationalPizzaDay23 = new DateTime(2023, 2, 9);
+Console.WriteLine("Year is: " + internationalPizzaDay23.Year);
+Console.WriteLine("Month is: " + internationalPizzaDay23.Month);
+Console.WriteLine("Day is: " + internationalPizzaDay23.Day);
+Console.WriteLine("Day of the week is: " + internationalPizzaDay23.DayOfWeek);
+var internationalPizzaDay24 = internationalPizzaDay23.AddYears(1);
 
-// remember the constructor is a method used to instantiate object of a class
-// we cannot do this " var rectangle1 = new Rectangle(5,10); " 
-//  this constructor does not exist , we did't define any constructor 
-// So ,we can only use the default paramerterless constructor , which is automatically created to
-// us if we do not creat6e 
+var rectangle1 = new Rectangle(5, 10);
+var rectangle2 = new Rectangle(50, 100);
 
-var rectangle1 = new Rectangle(5,10);  // create object from the constructor1
-var calculator = new ShapeMeasurmentsCalculator(); // create object from the constructor2
+Console.WriteLine(
+    "Count of Rectangle objects is " + Rectangle.CountOfInstances);
 
 Console.WriteLine("Width is " + rectangle1.Width);
+Console.WriteLine("Height is " + rectangle1.GetHeight());
+Console.WriteLine("Area is " + rectangle1.CalculateArea());
+Console.WriteLine("Circumference is " + rectangle1.CalculateCircumference());
 
-//rectangle1.Width = 15; // using the setter , cannot be used outside the class as it is private
+Console.WriteLine($"1 + 2 is {Calculator.Add(1, 2)}");
+Console.WriteLine($"1 - 2 is {Calculator.Subtract(1, 2)}");
+Console.WriteLine($"1 * 2 is {Calculator.Multiply(1, 2)}");
 
-Console.WriteLine("height is " + rectangle1.GetHeight());
-Console.WriteLine("Area is " + calculator.CalculateRectangleArea(rectangle1));
-Console.WriteLine("Circumference is " + calculator.CalculateRectangleCircumference(rectangle1));
+var appointmentTwoWeeksFromNow = new MedicalAppointment("Bob Smith", 14);
+var appointmentOneWeekFromNow = new MedicalAppointment("Margaret Smith");
+var appointmentUnknownPatient = new MedicalAppointment();
+var nameOnly = new MedicalAppointment("Name only");
 
-
-var rectangle2 = new Rectangle(6, 11);
-Console.WriteLine();
-Console.WriteLine("Width is " + rectangle2.Width);
-Console.WriteLine("height is " + rectangle2.GetHeight());
-Console.WriteLine("Area is " + calculator.CalculateRectangleArea(rectangle2));
-Console.WriteLine("Circumference is " + calculator.CalculateRectangleCircumference(rectangle2));
-
-
+//Stopwatch type
+Stopwatch stopwatch = Stopwatch.StartNew();
+//code to be measured
+stopwatch.Stop();
+Console.WriteLine("Elapsed time in ms: " + stopwatch.ElapsedMilliseconds);
 
 Console.ReadKey();
-/*
- Code 
- */
-//var numbers = new List<int> { 1, 2, 3 };
-//Console.WriteLine("Count of element is " +  numbers.Count);
 
+static class Calculator
+{
+    public static int Add(int a, int b) => a + b;
+    public static int Subtract(int a, int b) => a - b;
+    public static int Multiply(int a, int b) => a * b;
+}
 
-// count used to get the number of element in the list 
-// we can get Data from "Public" class , But we  cannot Set values as it is "private" data & no one should access them 
-
-// Note: to control "who can access componnents of a class we use acess modifires
-// Group of Key words like (Public - Private - Protected)"
-
-
-
-
-/*
- 
- Lec = 70. Adding methods to classes
- Lec = 77. Validation of constructor parameters
- Lec = 78. Readonly and const 
- Lec = 79. Limitations of fields. A need for properties
- Lec = 80. Properties
-            {
-                - What properties are
-                - What a backing field of a property is
-                - What accessors are
-                - What is the differnces between fields & properties are
-                - When we should use fields & properties 
-            
-            }
-
- */
-
-
-//  No Semicolons in the CLass, also first letter of class name must be capital  
 class Rectangle
 {
-    // A field is a variable that belongs to an Object of a class
-    // if we did not use any access modifires , this means the defult is "private" is used
-    //Note: Public field names start with ("W" Capital letter) , Private filed names start with ("_width/_height" underscore & lowercase letter) 
+    //const fields are implicitly static
+    public const int NumberOfSides = 4;
 
-    const int NumberOfSides = 4;
-    readonly int NumberOfSidesReadonly;
-                                     // make the field read only 
-                                     // read only field can only be assigned at the declaraction or in the constructor '
-                                     // making the field readonly this means "Immutability"
-                                     // Immutability: is that once a object is created , it will never be modified 
-                                     // READONLY = we use readonly when we want a field never to change, after ithas been set in the constructor
-                                     // Const = we use const for things with a constant value known at compilation time
-                                     /***************/
-                                     // 2) Const Modifier:
-                                     //  --> const can be applied to both variables & fields, 
-                                     //    those variables must be assigned at declaration and can never be modified afterward
-                                                          
+    //a static property, belonging to the class as a whole
+    public static int CountOfInstances { get; private set; }
 
-    /*
-    Note we define a 'constructor' similar to a method 
-    */
-    public Rectangle(int width ,int height)
+    //a static field
+    private static DateTime _firstUsed;
+
+    //a static constructor
+    static Rectangle()
     {
-        // will do validation - print  the warning - in case of negative numbers
-        // will use "Nameof" experression to change multiple of names without forgetting anything
-        // , it will return a string equal to te name of the given thing (nameof"") 
-
-        NumberOfSidesReadonly = 4;
-        _width = GetLenghtOrDefault(width, nameof(_width));
-        _height = GetLenghtOrDefault(height, nameof(_height));
-
-
+        _firstUsed = DateTime.Now;
     }
 
-
-    private int _width; // Private backing field for the Width property
-
-    // Public property named Width with a getter and private setter
-    public int Width
+    public Rectangle(int width, int height)
     {
-        get // Getter: Allows you to retrieve the value of _width
-        {
-            return _width;
-        }
-        private set // Setter: Allows you to set the value of _width, but it's private
-        {
-            if (value > 10)
-            {
-                _width = value; // Only set _width if the value is greater than 10
-            }
-        }
+        Width = GetLengthOrDefault(width, nameof(Width));
+        _height = GetLengthOrDefault(height, nameof(_height));
+        ++CountOfInstances;
     }
 
+    //readonly property - can only be set in the constructor
+    public int Width { get; }
 
+    //achieving a similar behavior as properties give with using methods
     private int _height;
-
-    // Public method for getting the height value
     public int GetHeight() => _height;
 
-    // Public method for setting the height value with validation
     public void SetHeight(int value)
     {
         if (value > 0)
@@ -140,56 +81,90 @@ class Rectangle
         }
     }
 
-
-    private int GetLenghtOrDefault(int Length, string name)
+    private int GetLengthOrDefault(int length, string name)
     {
-        // Adding "Const" , as we will nver going to change this value , Note: we cannot use "const" with "Var"
-        const int defailtValueIfNonPositive = 1;
-
-        if (Length <= 0)
+        const int defaultValueIfNonPositive = 1;
+        if (length <= 0)
         {
-            Console.WriteLine($"{name} must be a postive number. ");
-            return defailtValueIfNonPositive;
+            Console.WriteLine($"{name} must be a positive number.");
+            return defaultValueIfNonPositive;
         }
-        return Length;
+        return length;
     }
 
+    //expression-bodied methods
+    //could not be made static as they use the state of an instance (width and height)
+    public int CalculateCircumference() => 2 * Width + 2 * _height;
 
+    public int CalculateArea() => Width * _height;
 
+    //a get-only, expression-bodied property
+    public string Description => $"A rectangle with width {Width} " +
+        $"and height {_height}";
+
+    //a static method, not using any state of an instance
+    public static string DescribeGenerally() =>
+        $"A plane figure with four straight sides and four right angles.";
+
+    //can be made static
+    public string NotUsingAnyState() => "abc";
 }
 
 
-
-
-/*
- 
-    Lec: 71. Encapsulation
-        // is to make all (variable & method) in one class 
-        // Encapsulation: Bundling data with methods that operate on it in the same class
-        // Data hiding: Making fields private , instead of public
- */
-
-
-class ShapeMeasurmentsCalculator
+class MedicalAppointment
 {
-    // LEC : 74. Expression-bodied methods ( 1) Remove the "return" & " brackets" , 2) Add " => " Arrows and follow it with what you want to return)
-    public int CalculateRectangleCircumference(Rectangle rectangle) =>  2 * rectangle.Width + 2 * rectangle.GetHeight();
-    
-    
-       
+    private string _patientName;
+    private DateTime _date;
 
-    // if defult/private : then we need to use them inside the class only
-    // if Public : then we can use it outside the class 
-
-    public int CalculateRectangleArea(Rectangle rectangle)
+    public MedicalAppointment(string patientName, DateTime date)
     {
-        // Note: we cannot use Expression-bodied methods ,because it has multiple of lines of code
-        Console.WriteLine("Calculating area"); // statement
-        return rectangle.Width * rectangle.GetHeight(); // Exepression 
+        _patientName = patientName;
+        _date = date;
     }
 
+    //calling one constructor from another
+    //commented now, as the below constructor with optional parameters
+    //also allows to skip the second parameter
+    //public MedicalAppointment(string patientName) :
+    //    this(patientName, 7)
+    //{
+    //}
 
+    public MedicalAppointment(
+        string patientName = "Unknown", int daysFromNow = 7)
+    {
+        _patientName = patientName;
+        _date = DateTime.Now.AddDays(daysFromNow);
+    }
+
+    public DateTime GetDate() => _date;
+
+    public void Reschedule(DateTime date)
+    {
+        _date = date;
+        var printer = new MedicalAppointmentPrinter();
+        printer.Print(this);
+    }
+
+    public void OverwriteMonthAndDay(int month, int day)
+    {
+        _date = new DateTime(_date.Year, month, day);
+    }
+
+    public void MoveByMonthsAndDays(int monthsToAdd, int daysToAdd)
+    {
+        _date = new DateTime(
+            _date.Year,
+            _date.Month + monthsToAdd,
+            _date.Day + daysToAdd);
+    }
 }
 
-
-
+class MedicalAppointmentPrinter
+{
+    public void Print(MedicalAppointment medicalAppointment)
+    {
+        Console.WriteLine(
+            "Appointment will take place on " + medicalAppointment.GetDate());
+    }
+}
