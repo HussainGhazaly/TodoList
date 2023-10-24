@@ -1,10 +1,37 @@
-﻿var names = new Names();
-var path = names.BuildFilePath();
+﻿
+/*
+ 1- What is SRP = Single Responsibility Principle 
+ 2- What is SOLID  Principle
+ 3- How to read from and write to a text file
+ 4- How to add new files to a project
+ 5- How to move classes to their own files
+ 6- what namespaces are
+ 7- what using directives are
+ */
 
+
+
+
+using Program_BreakingSRP.DataAccess;
+
+
+//var stopweatch = Stopwatch.StartNew();
+//for (int i = 0; i < 1000; i++)
+//{
+//    Console.WriteLine($"Loop number{i}");
+//}
+
+//stopweatch.Stop();
+//Console.WriteLine("Time in ms: " + stopweatch.ElapsedMilliseconds);
+
+var names = new Names();
+var path = new NamesFilePathBuilder().BuildFilePath();
+var stringTextualRepository = new StringTextualRepository();
 if (File.Exists(path))
 {
     Console.WriteLine("Names file already exists. Loading names.");
-    names.ReadFromTextFile();
+    var stringFromFile = stringTextualRepository.Read(path);
+    names.AddNames(stringFromFile);
 }
 else
 {
@@ -17,53 +44,8 @@ else
     names.AddName("123 definitely not a valid name");
 
     Console.WriteLine("Saving names to the file.");
-    names.WriteToTextFile();
+    stringTextualRepository.Write(path, names.ALL);
 }
-Console.WriteLine(names.Format());
+Console.WriteLine(new NamesFormatter().Format(names.ALL));
 
 Console.ReadLine();
-
-public class Names
-{
-    private readonly List<string> _names = new List<string>();
-
-    public void AddName(string name)
-    {
-        if (IsValidName(name))
-        {
-            _names.Add(name);
-        }
-    }
-
-    private bool IsValidName(string name)
-    {
-        return
-            name.Length >= 2 &&
-            name.Length < 25 &&
-            char.IsUpper(name[0]) &&
-            name.All(char.IsLetter);
-    }
-
-    public void ReadFromTextFile()
-    {
-        var fileContents = File.ReadAllText(BuildFilePath());
-        var namesFromFile = fileContents.Split(Environment.NewLine).ToList();
-        foreach (var name in namesFromFile)
-        {
-            AddName(name);
-        }
-    }
-
-    public void WriteToTextFile() =>
-        File.WriteAllText(BuildFilePath(), Format());
-
-    public string BuildFilePath()
-    {
-        //we could imagine this is much more complicated
-        //for example that path is provided by the user and validated
-        return "names.txt";
-    }
-
-    public string Format() =>
-        string.Join(Environment.NewLine, _names);
-}
