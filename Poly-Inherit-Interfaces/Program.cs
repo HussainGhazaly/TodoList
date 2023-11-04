@@ -6,18 +6,40 @@
 
 //Console.WriteLine(pizza.Describe());
 
-var ingredient = new Ingredient();
-ingredient.PublicField = 10;
+//var ingredient = new Ingredient();
+//ingredient.PublicField = 10;
 
-var Cheddar = new Cheddar();
-Cheddar.PublicField = 20;
+//var Cheddar = new Cheddar();
+//Cheddar.PublicField = 20;
 
-Console.WriteLine("Value in Cheddar: " + Cheddar.PublicField);
-Console.WriteLine("Value in Ingredient: " + ingredient.PublicField);
+//Console.WriteLine("Value in Cheddar: " + Cheddar.PublicField);
+//Console.WriteLine("Value in Ingredient: " + ingredient.PublicField);
 
 //Console.WriteLine(Cheddar.PublicMethod());
 //Console.WriteLine(Cheddar.PrivateMethod());
 //Console.WriteLine(Cheddar.ProtectedMethod());
+
+
+//Console.WriteLine("Variable of type Cheddar");
+//Cheddar cheddar = new Cheddar();
+//Console.WriteLine(cheddar.Name); // virtual
+
+//Console.WriteLine("Variable of type Ingredient");
+//Ingredient ingredient = new Cheddar(); // not virtual -> Need to use Override to use the name cheddar filed
+//Console.WriteLine(ingredient.Name);
+
+var ingredients = new List<Ingredient>
+{
+    new Cheddar(),
+    new Mozarella(),
+    new TomatoSauce(),
+
+};
+
+foreach (Ingredient ingredient in ingredients)
+{
+    Console.WriteLine(ingredient.Name);
+}
 
 Console.ReadKey();
 
@@ -34,6 +56,7 @@ public class Pizza
 
 public class Ingredient
 {
+    public virtual string Name { get; } = "Some ingredient";
     public int PublicField;
 
     public string PublicMethod() =>
@@ -47,7 +70,7 @@ public class Ingredient
 
 public class Cheddar : Ingredient
 {
-    public string Name => "Cheddar cheese";
+    public override string Name => "Cheddar cheese";
     public int AgedForMonths { get; }
 
     public void UseMethodsFromBaseClass()
@@ -62,13 +85,13 @@ public class Cheddar : Ingredient
 
 public class TomatoSauce : Ingredient
 {
-    public string Name => "Tomato Sauce";
+    public  string Name => "Tomato Sauce";
     public int TomatoIn100Grams { get; }
 }
 
 
 public class Mozarella : Ingredient
 {
-    public string Name => "Mozarella";
+    public override string Name => "Mozarella";
     public int IsLight { get; }
 }
