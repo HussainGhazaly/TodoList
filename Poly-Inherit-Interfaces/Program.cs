@@ -1,97 +1,39 @@
-﻿
-//var pizza = new Pizza();
-//pizza.AddIngredient(new Cheddar());
-//pizza.AddIngredient(new Mozarella());
-//pizza.AddIngredient(new Cheddar());
+﻿using Pizzeria;
+using System.Text.Json;
 
-//Console.WriteLine(pizza.Describe());
-
-//var ingredient = new Ingredient();
-//ingredient.PublicField = 10;
-
-//var Cheddar = new Cheddar();
-//Cheddar.PublicField = 20;
-
-//Console.WriteLine("Value in Cheddar: " + Cheddar.PublicField);
-//Console.WriteLine("Value in Ingredient: " + ingredient.PublicField);
-
-//Console.WriteLine(Cheddar.PublicMethod());
-//Console.WriteLine(Cheddar.PrivateMethod());
-//Console.WriteLine(Cheddar.ProtectedMethod());
-
-
-//Console.WriteLine("Variable of type Cheddar");
-//Cheddar cheddar = new Cheddar();
-//Console.WriteLine(cheddar.Name); // virtual
-
-//Console.WriteLine("Variable of type Ingredient");
-//Ingredient ingredient = new Cheddar(); // not virtual -> Need to use Override to use the name cheddar filed
-//Console.WriteLine(ingredient.Name);
-
-var ingredients = new List<Ingredient>
+var person = new Person
 {
-    new Cheddar(),
-    new Mozarella(),
-    new TomatoSauce(),
-
+    FirstName = "John",
+    LastName = "Smith",
+    YearOfBirth = 1972
 };
 
-foreach (Ingredient ingredient in ingredients)
-{
-    Console.WriteLine(ingredient.Name);
-}
+var asJson = JsonSerializer.Serialize(person);
+Console.WriteLine("As JSON:");
+Console.WriteLine(asJson);
+
+var personJson =
+    "{\"FirstName\":\"John\",\"LastName\":\"Smith\",\"YearOfBirth\":1972}";
+
+var personFromJson = JsonSerializer.Deserialize<Person>(personJson);
+
+var numbers = new List<int> { 1, 4, 6, -1, 12, 44, -8, -19 };
+bool shallAddPositiveOnly = false;
+
+NumbersSumCalculator calculator =
+    shallAddPositiveOnly ?
+    new PositiveNumbersSumCalculator() :
+    new NumbersSumCalculator();
+
+int sum = calculator.Calculate(numbers);
+Console.WriteLine("Sum is: " + sum);
 
 Console.ReadKey();
 
-public class Pizza
+public class Person
 {
-    private List<Ingredient> _ingredients = new List<Ingredient>();
-
-    public void AddIngredient(Ingredient ingredient) =>
-        _ingredients.Add(ingredient);
-
-    public string Describe() =>
-        $"This is a pizza with {string.Join("," , _ingredients)}";
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public int YearOfBirth { get; set; }
 }
 
-public class Ingredient
-{
-    public virtual string Name { get; } = "Some ingredient";
-    public int PublicField;
-
-    public string PublicMethod() =>
-         "This method is Public in the Ingredient class.";
-    protected string ProtectedMethod() => // can be used in the drived classes + Base class , but not outside  
-      "This method is Protected in the Ingredient class.";
-
-    private string PrivateMethod() => // for Private : we can only use it inside the base class (No Drive ,No Outside)
-        "This method is Private in the Ingredient class.";
-}
-
-public class Cheddar : Ingredient
-{
-    public override string Name => "Cheddar cheese";
-    public int AgedForMonths { get; }
-
-    public void UseMethodsFromBaseClass()
-    {
-        Console.WriteLine(PublicMethod());
-        Console.WriteLine(ProtectedMethod());
-       // Console.WriteLine(PrivateMethod());
-    }
-
-}
-
-
-public class TomatoSauce : Ingredient
-{
-    public  string Name => "Tomato Sauce";
-    public int TomatoIn100Grams { get; }
-}
-
-
-public class Mozarella : Ingredient
-{
-    public override string Name => "Mozarella";
-    public int IsLight { get; }
-}
