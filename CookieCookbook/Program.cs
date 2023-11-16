@@ -1,10 +1,13 @@
 ﻿
 
 
+using CookieCookbook.Recipes;
+using CookieCookbook.Recipes.Ingredients;
+
 var cookiesRecipesApp = new CookiesRecipesApp( new RecipesRepository() , new RecipesConsoleUserInteraction());
 
 
-cookiesRecipesApp.Run();
+cookiesRecipesApp.Run("recipes.txt");
 
 
 
@@ -29,10 +32,10 @@ public class CookiesRecipesApp
         _recipesUserInteraction = recipesUserInteraction;
     }
 
-    public void Run()
+    public void Run(string filePath)
     {
         // 1- Reading Recipes from file
-        var allRecipes = _recipesRepository.Read(FilePath);
+        var allRecipes = _recipesRepository.Read(filePath);
 
         // 2- Printing Recipes
         _recipesUserInteraction.PrintExistingRecipes(allRecipes);
@@ -65,6 +68,7 @@ public interface IRecipesUserInteraction
 {
     void ShowMessage(string message);
     void Exit();
+    void PrintExistingRecipes(IEnumerable<Recipe> allRecipes);  // pass any collection of recipies , even if array of recipies 
 }
 
 public class RecipesConsoleUserInteraction: IRecipesUserInteraction
@@ -80,12 +84,38 @@ public class RecipesConsoleUserInteraction: IRecipesUserInteraction
         Console.WriteLine("Press any Key to close.");
         Console.ReadKey();
     }
+
+    public void PrintExistingRecipes(IEnumerable<Recipe> allRecipes)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public interface IRecipesRepository
 {
-
+    List<Recipe> Read(string filePath);
 }
-public class RecipesRepository: IRecipesRepository
+public class RecipesRepository : IRecipesRepository
 {
+    public List<Recipe> Read(string filePath)
+    {
+        return new List<Recipe>
+        {
+            new Recipe(new List<Ingredient>
+            {
+                new WheatFlour(),
+                new Butter(),
+                new Sugar()
+            }),
+            new Recipe(new List<Ingredient>
+            {
+                new CocoaPowder(),
+                new SpeltFlour(),
+                new Cinnamon()
+            })
+
+
+        };
+
+    }
 }
