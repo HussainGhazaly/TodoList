@@ -40,26 +40,26 @@ public class CookiesRecipesApp
         // 2- Printing Recipes
         _recipesUserInteraction.PrintExistingRecipes(allRecipes);
 
-        // 3- Prompting "asking" the user to create the recipe.
-        _recipesUserInteraction.PromptingToCreateRecipe();
+        //// 3- Prompting "asking" the user to create the recipe.
+        //_recipesUserInteraction.PromptingToCreateRecipe();
 
-        // 4- Reading the ingredient form the user
-        var ingredients = _recipesUserInteraction.ReadIngredientsFromUser();
+        //// 4- Reading the ingredient form the user
+        //var ingredients = _recipesUserInteraction.ReadIngredientsFromUser();
 
-        // check if the user selected any ingredients
-        if (ingredients.Count > 0)
-        {
-            var recipes = new Recipe(ingredients);
-            allRecipes.Add(recipe);
-            _recipesRepository.write(FilePath, allRecipes);
-            _recipesUserInteraction.ShowMessage("Recipe added:");
-            _recipesUserInteraction.ShowMessage(recipe.ToString());
-        }
-        else 
-        {
-            _recipesUserInteraction.ShowMessage("No ingredients have been selected. " + 
-                "Recipe will not be save. ");
-        }
+        //// check if the user selected any ingredients
+        //if (ingredients.Count > 0)
+        //{
+        //    var recipes = new Recipe(ingredients);
+        //    allRecipes.Add(recipe);
+        //    _recipesRepository.write(FilePath, allRecipes);
+        //    _recipesUserInteraction.ShowMessage("Recipe added:");
+        //    _recipesUserInteraction.ShowMessage(recipe.ToString());
+        //}
+        //else 
+        //{
+        //    _recipesUserInteraction.ShowMessage("No ingredients have been selected. " + 
+        //        "Recipe will not be save. ");
+        //}
         _recipesUserInteraction.Exit();
     }
 }
@@ -87,7 +87,19 @@ public class RecipesConsoleUserInteraction: IRecipesUserInteraction
 
     public void PrintExistingRecipes(IEnumerable<Recipe> allRecipes)
     {
-        throw new NotImplementedException();
+        if (allRecipes.Count() > 0)
+        {
+            Console.WriteLine("Existing recipes are:" + Environment.NewLine);
+            var counter = 1;
+            foreach (var recipe in allRecipes)
+            {
+                Console.WriteLine($"*****{counter}*****");
+                Console.WriteLine(recipe);
+                Console.WriteLine();
+                ++counter;
+            }
+           
+        }
     }
 }
 
