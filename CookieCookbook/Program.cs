@@ -4,7 +4,7 @@
 using CookieCookbook.Recipes;
 using CookieCookbook.Recipes.Ingredients;
 
-var cookiesRecipesApp = new CookiesRecipesApp( new RecipesRepository() , new RecipesConsoleUserInteraction());
+var cookiesRecipesApp = new CookiesRecipesApp( new RecipesRepository() , new RecipesConsoleUserInteraction(new IngredientsRegister()));
 
 
 cookiesRecipesApp.Run("recipes.txt");
@@ -41,7 +41,7 @@ public class CookiesRecipesApp
         _recipesUserInteraction.PrintExistingRecipes(allRecipes);
 
         //// 3- Prompting "asking" the user to create the recipe.
-        //_recipesUserInteraction.PromptingToCreateRecipe();
+        _recipesUserInteraction.PromptingToCreateRecipe();
 
         //// 4- Reading the ingredient form the user
         //var ingredients = _recipesUserInteraction.ReadIngredientsFromUser();
@@ -69,10 +69,32 @@ public interface IRecipesUserInteraction
     void ShowMessage(string message);
     void Exit();
     void PrintExistingRecipes(IEnumerable<Recipe> allRecipes);  // pass any collection of recipies , even if array of recipies 
+    void PromptingToCreateRecipe();
+}
+
+public class IngredientsRegister
+{
+    public IEnumerable<Ingredient> All { get; } = new List<Ingredient>
+    {
+        new WheatFlour(),
+        new SpeltFlour(),
+        new Butter(),
+        new Chocolate(),
+        new Sugar(),
+        new Cardamom(),
+        new Cinnamon(),
+        new CocoaPowder(),
+    };
+
 }
 
 public class RecipesConsoleUserInteraction: IRecipesUserInteraction
 {
+    private readonly IngredientsRegister _ingredientsRegister;
+    public RecipesConsoleUserInteraction(IngredientsRegister ingredientsRegister)
+    {
+        _ingredientsRegister = ingredientsRegister;
+    }
 
     public void ShowMessage(string message)
     {
@@ -99,6 +121,15 @@ public class RecipesConsoleUserInteraction: IRecipesUserInteraction
                 ++counter;
             }
            
+        }
+    }
+
+    public void PromptingToCreateRecipe()
+    {
+        Console.WriteLine("Create a new cookie recipe! " + "Available ingredients are:");
+        foreach (var ingredient in _ingredientsRegister.All)
+        {
+            Console.WriteLine(ingredient);
         }
     }
 }

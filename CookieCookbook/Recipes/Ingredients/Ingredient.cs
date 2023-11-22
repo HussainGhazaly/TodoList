@@ -7,6 +7,8 @@
         public virtual string PreparationInstruction => // keyword is used to declare a virtual member in a base class that can be overridden in derived classes. In the context of a property, it means that a derived class can provide its own implementation for this property using the override keyword.
             "Add to other ingredients. ";
 
+        public override string ToString() =>
+            $"{Id}. {Name}";
     }
 
 }
