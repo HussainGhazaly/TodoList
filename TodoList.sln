@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiceRollGame", "DiceRollGam
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poly-Inherit-Interfaces", "Poly-Inherit-Interfaces\Poly-Inherit-Interfaces.csproj", "{03B30392-059C-4F83-8D64-FFE8769384A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookieCookbook", "CookieCookbook\CookieCookbook.csproj", "{1AFBE0E1-5119-41A2-A08D-C356A11DAE2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookieCookbook", "CookieCookbook\CookieCookbook.csproj", "{1AFBE0E1-5119-41A2-A08D-C356A11DAE2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameDataParser", "GameDataParser\GameDataParser.csproj", "{83707CDC-6485-4C0C-99B3-65985F2F0FFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{1AFBE0E1-5119-41A2-A08D-C356A11DAE2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AFBE0E1-5119-41A2-A08D-C356A11DAE2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AFBE0E1-5119-41A2-A08D-C356A11DAE2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83707CDC-6485-4C0C-99B3-65985F2F0FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83707CDC-6485-4C0C-99B3-65985F2F0FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83707CDC-6485-4C0C-99B3-65985F2F0FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83707CDC-6485-4C0C-99B3-65985F2F0FFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
