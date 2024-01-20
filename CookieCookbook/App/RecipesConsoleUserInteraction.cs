@@ -1,5 +1,6 @@
 ﻿using CookieCookbook.Recipes.Ingredients;
 using CookieCookbook.Recipes;
+using System.Diagnostics.Metrics;
 
 
 namespace CookieCookbook.App;
@@ -28,15 +29,22 @@ public class RecipesConsoleUserInteraction : IRecipesUserInteraction
         if (allRecipes.Count() > 0)
         {
             Console.WriteLine("Existing recipes are:" + Environment.NewLine);
-            var counter = 1;
-            foreach (var recipe in allRecipes)
-            {
-                Console.WriteLine($"*****{counter}*****");
-                Console.WriteLine(recipe);
-                Console.WriteLine();
-                ++counter;
-            }
+            //var counter = 1;
+            //foreach (var recipe in allRecipes)
+            //{
+            //    Console.WriteLine($"*****{counter}*****");
+            //    Console.WriteLine(recipe);
+            //    Console.WriteLine();
+            //    ++counter;
+            //}
 
+            var allRecipiesAsStrings = allRecipes
+            .Select((recipe, index) =>
+$@"*****{index + 1}*****
+{recipe}");
+              
+            Console.WriteLine(string.Join(Environment.NewLine, allRecipiesAsStrings));
+            Console.WriteLine();
         }
     }
 
