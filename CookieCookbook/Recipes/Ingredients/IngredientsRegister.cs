@@ -25,6 +25,12 @@ public class IngredientsRegister : IIngredientsRegister
                 $"More than one ingredients have ID  equal to {id}.");
         }
 
-        return All.FirstOrDefault(ingredient => ingredient.Id == id);
+        if (All.Select(ingredient => ingredient.Id).Distinct().Count() != All.Count())
+        {
+            throw new InvalidOperationException(
+                $"Some ingredients have Duplicaed ID.");
+        }
+
+        return allcountOfIngredientsWithGivenId.FirstOrDefault();
     } 
 }
