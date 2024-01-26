@@ -4,7 +4,7 @@ using CsvDataAccess.OldSolution;
 using CsvDataAccess.NewSolution;
 using CsvDataAccess.PerformanceTesting;
 
-string filePath = "sampleData.csv";
+string filePath = @"C:\Users\HUM014\Downloads\sampleData.csv";
 var csvData = new CsvReader().Read(filePath);
 
 ITableDataBuilder tableDataBuiler = new TableDataBuilder();
@@ -26,34 +26,34 @@ Console.WriteLine($"Time of reading the CSV was " +
 
 ITableDataBuilder fastTableDataBuiler = new FastTableDataBuilder();
 
-//TODO uncomment when new code is ready
-//var testResultForNewCode = TableDataPerformanceMeasurer.Test(
-//    fastTableDataBuiler, csvData);
 
-//Console.WriteLine();
-//Console.WriteLine("Test results for new code:");
-//Console.WriteLine("Memory increase in bytes: " +
-//    string.Format("{0:n0}", testResultForNewCode.MemoryIncreaseInBytes));
-//Console.WriteLine($"Time of loading the CSV was " +
-//    $"{testResultForNewCode.TimeOfBuildingTable}.");
-//Console.WriteLine($"Time of reading the CSV was " +
-//    $"{testResultForNewCode.TimeOfDataReading}.");
+var testResultForNewCode = TableDataPerformanceMeasurer.Test(
+    fastTableDataBuiler, csvData);
 
-//Console.WriteLine();
-//Console.WriteLine("Checking if results are the same...");
-//var areEqual = ContentEqualityChecker.IsEqual(
-//    tableDataBuiler, 
-//    fastTableDataBuiler, 
-//    csvData);
+Console.WriteLine();
+Console.WriteLine("Test results for new code:");
+Console.WriteLine("Memory increase in bytes: " +
+    string.Format("{0:n0}", testResultForNewCode.MemoryIncreaseInBytes));
+Console.WriteLine($"Time of loading the CSV was " +
+    $"{testResultForNewCode.TimeOfBuildingTable}.");
+Console.WriteLine($"Time of reading the CSV was " +
+    $"{testResultForNewCode.TimeOfDataReading}.");
 
-//if(areEqual)
-//{
-//    Console.WriteLine("Results are the same.");
-//}
-//else
-//{
-//    Console.WriteLine("Results are different.");
-//}
+Console.WriteLine();
+Console.WriteLine("Checking if results are the same...");
+var areEqual = ContentEqualityChecker.IsEqual(
+    tableDataBuiler,
+    fastTableDataBuiler,
+    csvData);
+
+if (areEqual)
+{
+    Console.WriteLine("Results are the same.");
+}
+else
+{
+    Console.WriteLine("Results are different.");
+}
 
 Console.WriteLine("Done. Press any key to close.");
 Console.ReadKey();
