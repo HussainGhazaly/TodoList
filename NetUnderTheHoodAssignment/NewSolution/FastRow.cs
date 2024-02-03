@@ -3,7 +3,7 @@
 public class FastRow
 {
     // OLD-Bad Ex on Object for all types   private Dictionary<string, object> _data;  
-
+    
 
     // Dictionary that stores all Data as Objects, we will create a single dictionary for each data type
     private Dictionary<string, int> _intsdata = new(); 
