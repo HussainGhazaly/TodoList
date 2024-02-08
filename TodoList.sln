@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetUnderTheHoodAssignment",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API-Project", "API-Project\API-Project.csproj", "{95FD8BFE-2E70-4180-A2D2-7EC84EC97A81}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWarsPlanetsStats", "StarWarsPlanetsStats\StarWarsPlanetsStats.csproj", "{7D59DBE6-8B09-49C2-A915-9511B39C2FD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{95FD8BFE-2E70-4180-A2D2-7EC84EC97A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95FD8BFE-2E70-4180-A2D2-7EC84EC97A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95FD8BFE-2E70-4180-A2D2-7EC84EC97A81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D59DBE6-8B09-49C2-A915-9511B39C2FD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D59DBE6-8B09-49C2-A915-9511B39C2FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D59DBE6-8B09-49C2-A915-9511B39C2FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D59DBE6-8B09-49C2-A915-9511B39C2FD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

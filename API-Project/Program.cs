@@ -6,9 +6,9 @@ var baseAddress = "https://datausa.io/api/";
 var requestUri = "data?drilldowns=Nation&measures=Population";
 
 IApiDataReader apiDataReader = new ApiDataReader();
-var jsion = await apiDataReader.Read(baseAddress, requestUri); // Cuz the method is Async, we need to add await 
+var json = await apiDataReader.Read(baseAddress, requestUri); // Cuz the method is Async, we need to add await 
 
-var root = JsonSerializer.Deserialize<Root>(jsion);
+var root = JsonSerializer.Deserialize<Root>(json);
 
 foreach (var yearlyData in root.data)  // load data from public api
 {
